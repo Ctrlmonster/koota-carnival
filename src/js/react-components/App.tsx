@@ -46,7 +46,11 @@ export default function App() {
             'absolute interaction-none top-0 left-0 w-full h-full text-xl flex justify-center items-center'
           }
         >
-          Waiting for jolt world...
+          <div className={"flex-col items-center justify-center"}>
+            <div className="m-auto loader mb-4"></div>
+            <div>Waiting for jolt world...</div>
+          </div>
+
         </div>
       ) : null}
     </div>
