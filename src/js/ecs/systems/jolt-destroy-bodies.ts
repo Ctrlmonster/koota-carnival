@@ -1,5 +1,5 @@
 import { World } from 'koota';
-import { DestroyMe } from '../traits';
+import { DestroyMe } from '../base-traits';
 import { JoltBody } from '../jolt-traits/jolt-body';
 import { JoltWorld } from '../jolt-traits/jolt-world';
 

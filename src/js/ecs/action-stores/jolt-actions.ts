@@ -8,7 +8,7 @@ import {
   TColor,
   TGeometry,
   Transforms,
-} from '../traits';
+} from '../base-traits';
 import { BoxGeometry, Color, SphereGeometry, Vector3 } from 'three';
 import { JoltBody, NeedsJoltBody } from '../jolt-traits/jolt-body';
 

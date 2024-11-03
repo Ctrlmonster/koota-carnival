@@ -9,7 +9,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useWorld } from 'koota/react';
 import { schedule } from '../ecs';
 import { memo, useEffect, useRef } from 'react';
-import { BatchSettings, SceneInfo, TScene } from '../ecs/traits';
+import { BatchSettings, SceneInfo, TScene } from '../ecs/base-traits';
 import {
   BasePlatform,
   MovingPlatform,
@@ -329,15 +329,22 @@ export const SceneContainer = memo(function SceneContainer() {
 function Background() {
   const lightRef = useRef<DirectionalLight>(null!);
 
+  //const scene = useThree((state) => state.scene);
+
   useEffect(() => {
-    lightRef.current.shadow.camera.left = -80;
-    lightRef.current.shadow.camera.right = 80;
-    lightRef.current.shadow.camera.top = 80;
-    lightRef.current.shadow.camera.bottom = -80;
+    lightRef.current.shadow.camera.left = -100;
+    lightRef.current.shadow.camera.right = 100;
+    lightRef.current.shadow.camera.top = 100;
+    lightRef.current.shadow.camera.bottom = -100;
     lightRef.current.shadow.camera.near = 0.5;
-    lightRef.current.shadow.camera.far = 150;
+    lightRef.current.shadow.camera.far = 200;
     lightRef.current.shadow.mapSize.width = 1024;
     lightRef.current.shadow.mapSize.height = 1024;
+
+    /*
+    const shadowCamHelper = new CameraHelper(lightRef.current.shadow.camera);
+    scene.add(shadowCamHelper);
+    return () => scene.remove(shadowCamHelper);*/
   }, []);
 
   return (
@@ -346,7 +353,7 @@ function Background() {
       <directionalLight
         color={'#ffb65e'}
         intensity={3}
-        position={[0, 150, 0]}
+        position={[0, 200, 0]}
         ref={lightRef}
         castShadow
       />

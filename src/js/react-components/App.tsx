@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import { useObserve, useQuery, useWorld } from 'koota/react';
 import { useLayoutEffect, useState } from 'react';
 import { useJoltActions } from '../ecs/action-stores/jolt-actions';
-import { SceneInfo, Transforms } from '../ecs/traits';
+import { SceneInfo, Transforms } from '../ecs/base-traits';
 import { SceneContainer } from './SceneContainer';
 
 export default function App() {

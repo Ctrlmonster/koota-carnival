@@ -1,22 +1,15 @@
 import { World } from 'koota';
-import {
-  createShapeFromGeometry,
-  inferInitTransformsFromMesh,
-  inferShapeArgsFromBaseGeometry,
-} from '../../jolt/jolt-helper';
-import {
-  JoltWorld,
-  JoltWorldImpl,
-  LAYER_MOVING,
-  LAYER_NON_MOVING,
-} from '../jolt-traits/jolt-world';
+import { createShapeFromGeometry, inferShapeArgsFromBaseGeometry } from '../../jolt/jolt-helper';
+import { JoltWorld, JoltWorldImpl, LAYER_MOVING, LAYER_NON_MOVING } from '../jolt-traits/jolt-world';
 import { JoltBody, NeedsJoltBody } from '../jolt-traits/jolt-body';
 import Jolt from 'jolt-physics';
-import { ControlledBody, TGeometry, TMesh, Transforms } from '../traits';
+import { ControlledBody, TGeometry, Transforms } from '../base-traits';
 
 const helperPos: { current: null | Jolt.RVec3 } = { current: null };
 const helperRot: { current: null | Jolt.Quat } = { current: null };
 
+
+//const bodyIds: Jolt.BodyID[] = [];
 
 export const BuildJoltBodies = ({ world }: { world: World }) => {
   // we just store the jolt world directly on the ecs world
@@ -25,15 +18,15 @@ export const BuildJoltBodies = ({ world }: { world: World }) => {
   const joltWorld = world.get(JoltWorld);
   const Jolt = JoltWorldImpl.JOLT_NATIVE;
 
+
   if (!helperPos.current) {
     helperPos.current = new Jolt.RVec3();
     helperRot.current = new Jolt.Quat();
   }
 
-  const bodiesToAdd = world.query(NeedsJoltBody, TGeometry, Transforms);
 
   // query all meshes that want a jolt body
-  bodiesToAdd.updateEach(
+  world.query(NeedsJoltBody, TGeometry, Transforms).updateEach(
     ([buildSettings, geometry, transforms], entity) => {
       const { buildConvexShape, layer, motionType, continuousCollisionMode, initScale } =
         buildSettings;
@@ -98,16 +91,19 @@ export const BuildJoltBodies = ({ world }: { world: World }) => {
 
       // add  to the jolt world
       joltWorld.bodyInterface.AddBody(body.GetID(), Jolt.EActivation_Activate);
-
+      //bodyIds.push(body.GetID());
     },
     {
       changeDetection: false,
     },
   );
 
-  if (bodiesToAdd.length) {
-    joltWorld.physicsSystem.OptimizeBroadPhase();
-  }
 
+  /*
+  // switch to this eventually
+  const inter = joltWorld.bodyInterface.AddBodiesPrepare(bodyIds, bodyIds.length);
+  joltWorld.bodyInterface.AddBodiesFinalize(bodyIds, bodyIds, inter, EActivation_Activate);
+  bodyIds.length = 0;
+  */
 
 };

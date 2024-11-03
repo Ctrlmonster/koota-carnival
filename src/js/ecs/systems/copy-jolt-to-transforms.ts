@@ -1,6 +1,6 @@
 import { Not, World } from 'koota';
 import { JoltBody } from '../jolt-traits/jolt-body';
-import { ControlledBody, Transforms } from '../traits';
+import { ControlledBody, Transforms } from '../base-traits';
 import { JoltWorld, JoltWorldImpl } from '../jolt-traits/jolt-world';
 import Jolt from 'jolt-physics';
 

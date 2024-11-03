@@ -20,7 +20,7 @@ import {
   TGeometry,
   TimeOffset,
   Transforms
-} from "./traits";
+} from "./base-traits";
 
 
 // for demo purposes we store all systems in a single file

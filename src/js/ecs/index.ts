@@ -9,7 +9,7 @@ import {
   SyncBatchTransforms,
   UpdateMovingPlatforms,
   UpdateRotatingPlatforms,
-} from './systems';
+} from './base-systems';
 import {
   BatchCoordinates,
   BatchCount,
@@ -21,7 +21,7 @@ import {
   TColor,
   Transforms,
   TScene,
-} from './traits';
+} from './base-traits';
 import {
   BatchedMesh,
   Color,

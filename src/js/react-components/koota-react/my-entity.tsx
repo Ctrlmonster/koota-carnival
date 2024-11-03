@@ -32,7 +32,7 @@ import {
   TGeometry,
   TimeOffset,
   Transforms,
-} from '../../ecs/traits';
+} from '../../ecs/base-traits';
 import { Entity } from 'koota';
 import { NeedsJoltBody } from '../../ecs/jolt-traits/jolt-body';
 
