@@ -48,7 +48,10 @@ export default function App() {
         >
           <div className={"flex-col items-center justify-center"}>
             <div className="m-auto loader mb-4"></div>
-            <div>Waiting for jolt world...</div>
+            <div>
+              Waiting for multi-threaded Jolt...
+              (On Stackblitz this can take up to 1 min. Not sure why – let me know if you do! locally this takes ~ 1 second.)
+            </div>
           </div>
 
         </div>
