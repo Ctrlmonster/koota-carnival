@@ -1,6 +1,6 @@
 # Koota Carnival
 
-👉 Check out the [Live Demo](https://codesandbox.io/p/github/Ctrlmonster/koota-batched-mesh/master)
+👉 Check out the [Live Demo](https://stackblitz.com/~/github.com/Ctrlmonster/koota-carnival)
 
 This is a Physics + ECS Stress-Test using [Koota](https://github.com/pmndrs/koota), `BatchedMesh` and [JoltPhysics](https://github.com/jrouwe/JoltPhysics.js).
 
