@@ -31,7 +31,7 @@ export const BatchCoordinates = trait({
 });
 
 
-export const SpawnTime = trait({origin: () => performance.now(), timeAlive: 0});
+export const SpawnTime = trait({origin: () => performance.now(), timeAlive: 0, ticksAlive: 0});
 export const IsCharacter = trait(); 
 export const SceneInfo = trait(() => ({
   drawCalls: 0,
@@ -64,3 +64,7 @@ export const RotatorPlatform = trait({
   axis: () => new Vector3(0, 1, 0),
   speed: 1
 });
+
+export const Ticks = trait({
+  current: 0
+})

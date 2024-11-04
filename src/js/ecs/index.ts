@@ -8,7 +8,7 @@ import {
   SpawnBatchInstances,
   SyncBatchTransforms,
   UpdateMovingPlatforms,
-  UpdateRotatingPlatforms,
+  UpdateRotatingPlatforms, UpdateTimers,
 } from './base-systems';
 import {
   BatchCoordinates,
@@ -46,13 +46,14 @@ export const world = createWorld();
 export const schedule = new Schedule<{ world: World; delta: number }>();
 
 // import all ecs systems and build the schedule
+
+schedule.add(UpdateTimers);
 schedule.add(SpawnBatchInstances);
 schedule.add(RemoveBatchInstances, { after: SpawnBatchInstances });
 schedule.add(DestroyBatchedMesh, { after: SpawnBatchInstances });
 
 
-
-schedule.add(UpdateMovingPlatforms, { before: SyncBatchTransforms });
+schedule.add(UpdateMovingPlatforms, { before: SyncBatchTransforms, after: UpdateTimers });
 schedule.add(UpdateRotatingPlatforms, { before: SyncBatchTransforms });
 schedule.add(SyncBatchTransforms, {
   after: [DestroyBatchedMesh, RemoveBatchInstances, SpawnBatchInstances],
